@@ -12,8 +12,8 @@ export default function MenuItem({
 }: MyComponentProps) {
   return (
     <div
-      className={`text-[#636984] w-[33%] h-[100%] flex justify-center items-center ${
-        selectedId === id ? "bg-[#F87070]" : "bg-[#151932]"
+      className={`text-[#636984] font-bold w-[33%] h-[100%] flex justify-center items-center ${
+        selectedId === id ? "bg-[#F87070] text-[#1f213f]" : "bg-[#151932]"
       } rounded-[26.5px]`}
       onClick={() => setSelectedId(id)}
     >
