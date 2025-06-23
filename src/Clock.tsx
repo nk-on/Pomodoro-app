@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-
-export default function Clock() {
-  const [minutes, setMinutes] = useState<number>(24);
-  const [seconds, setSeconds] = useState<number>(59);
+import { useEffect} from "react";
+interface Clock {
+  minutes:number,
+  seconds:number,
+  dispatch:React.ActionDispatch<[action: {type:string}]>
+}
+export default function Clock({minutes,seconds,dispatch}:Clock) {
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       return;
     }
     const secondsTimer = setTimeout(() => {
-      setSeconds((second) => second - 1);
+      dispatch({type:'seconds decrease'})
       if (seconds === 0) {
-        setSeconds(59);
-        setMinutes((minutes) => minutes - 1);
+        dispatch({type:'minutes decrease'})
       }
     }, 1000);
     return ()=>{clearInterval(secondsTimer)}
