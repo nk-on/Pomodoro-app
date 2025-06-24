@@ -1,22 +1,28 @@
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 interface Clock {
-  minutes:number,
-  seconds:number,
-  dispatch:React.ActionDispatch<[action: {type:string}]>
+  minutes: number;
+  seconds: number;
+  dispatch: React.ActionDispatch<[action: { type: string }]>;
 }
-export default function Clock({minutes,seconds,dispatch}:Clock) {
+export default function Clock({ minutes, seconds, dispatch }: Clock) {
+  const [flowState, setFlowState] = useState<string>("RESUME");
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
+      setFlowState('RESTART')
       return;
     }
-    const secondsTimer = setTimeout(() => {
-      dispatch({type:'seconds decrease'})
-      if (seconds === 0) {
-        dispatch({type:'minutes decrease'})
+    const timer = setTimeout(() => {
+      if (flowState === "RESUME") {
+        dispatch({ type: "seconds decrease" });
+        if (seconds === 0) {
+          dispatch({ type: "minutes decrease" });
+        }
       }
     }, 1000);
-    return ()=>{clearInterval(secondsTimer)}
-  }, [minutes, seconds]);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [minutes, seconds, flowState]);
   return (
     <div
       className="w-[310px] h-[310px] rounded-[50%] flex justify-center items-center"
@@ -30,7 +36,18 @@ export default function Clock({minutes,seconds,dispatch}:Clock) {
           <div className="text-[#fff] font-bold text-[70px]">
             {minutes}:{seconds}
           </div>
-          <div className="text-[#fff] tracking-[.25em]">RESTART</div>
+          <div
+            className="text-[#fff] tracking-[.25em] cursor-pointer"
+            onClick={() => {
+              if (flowState === "RESUME") {
+                setFlowState("PAUSE");
+              } else {
+                setFlowState("RESUME");
+              }
+            }}
+          >
+            {flowState}
+          </div>
         </div>
       </div>
     </div>
