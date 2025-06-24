@@ -6,6 +6,7 @@ interface Clock {
 }
 export default function Clock({ minutes, seconds, dispatch }: Clock) {
   const [flowState, setFlowState] = useState<string>("RESUME");
+  const [barPercentage,setBarPercentage] = useState<number>(100)
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
@@ -13,6 +14,7 @@ export default function Clock({ minutes, seconds, dispatch }: Clock) {
     }
     const timer = setTimeout(() => {
       if (flowState === "RESUME") {
+        setBarPercentage(barPercentage - (barPercentage / ((minutes*60)+seconds)))
         dispatch({ type: "seconds decrease" });
         if (seconds === 0) {
           dispatch({ type: "minutes decrease" });
@@ -31,8 +33,8 @@ export default function Clock({ minutes, seconds, dispatch }: Clock) {
         boxShadow: "-50px -50px 100px #272C5A, 50px 50px 100px #121530",
       }}
     >
-      <div className="w-[90%] h-[90%] bg-[#151932] rounded-[50%] flex flex-col justify-center items-center">
-        <div className="w-[90%] h-[90%] border-[10px] border-[#F87070] rounded-[50%] flex flex-col justify-center items-center">
+        <div className="w-[90%] h-[90%]  rounded-[50%] flex flex-col justify-center items-center" style={{ background: `conic-gradient(#F87070 0% ${barPercentage}%, #151932 ${barPercentage}% 100%)`}}>
+          <div className="w-[90%] h-[90%] bg-[#151932] rounded-[50%] flex flex-col justify-center items-center">
           <div className="text-[#fff] font-bold text-[70px]">
             {minutes}:{seconds}
           </div>
@@ -47,9 +49,10 @@ export default function Clock({ minutes, seconds, dispatch }: Clock) {
             }}
           >
             {flowState}
+            </div>
+            
           </div>
         </div>
-      </div>
     </div>
   );
 }
