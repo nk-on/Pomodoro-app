@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Menu({ dispatch }:{dispatch:React.ActionDispatch<[action: {type:string}]>}) {
   const [selectedId, setSelectedId] = useState<number>(-1);
   return (
-    <div className="w-[35vw] h-[48px] bg-[#151932] rounded-[20px] flex justify-between items-center px-[10px]">
+    <div className="lg:w-[35vw] w-[90vw] h-[56px] bg-[#151932] rounded-[25px] flex justify-between items-center px-[10px]">
       {menuItems.map((element) => {
         return (
           <MenuItem
