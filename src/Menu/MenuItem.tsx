@@ -3,14 +3,16 @@ interface MyComponentProps {
   id: number;
   selectedId: number;
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
-  dispatch:React.ActionDispatch<[action: {type:string}]>
+  dispatch: React.ActionDispatch<[action: { type: string }]>;
+  setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function MenuItem({
   title,
   id,
   selectedId,
   setSelectedId,
-   dispatch
+  dispatch,
+  setBarPercentage,
 }: MyComponentProps) {
   return (
     <div
@@ -18,8 +20,9 @@ export default function MenuItem({
         selectedId === id ? "bg-[#F87070] text-[#1f213f]" : "bg-[#151932] text-[#636984]"
       } rounded-[26.5px]`}
       onClick={() => {
-        setSelectedId(id)
-        dispatch({type:title})
+        setSelectedId(id);
+        setBarPercentage(100);
+        dispatch({ type: title });
       }}
     >
       {title}

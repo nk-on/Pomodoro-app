@@ -3,10 +3,11 @@ interface Clock {
   minutes: number;
   seconds: number;
   dispatch: React.ActionDispatch<[action: { type: string }]>;
+  barPercentage:number,
+  setBarPercentage:React.Dispatch<React.SetStateAction<number>>
 }
-export default function Clock({ minutes, seconds, dispatch }: Clock) {
+export default function Clock({ minutes, seconds, dispatch,barPercentage,setBarPercentage }: Clock) {
   const [flowState, setFlowState] = useState<string>("RESUME");
-  const [barPercentage,setBarPercentage] = useState<number>(100)
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
