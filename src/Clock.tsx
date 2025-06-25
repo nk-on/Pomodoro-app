@@ -7,14 +7,14 @@ interface Clock {
   setBarPercentage:React.Dispatch<React.SetStateAction<number>>
 }
 export default function Clock({ minutes, seconds, dispatch,barPercentage,setBarPercentage }: Clock) {
-  const [flowState, setFlowState] = useState<string>("RESUME");
+  const [flowState, setFlowState] = useState<string>("PAUSE");
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
       return;
     }
     const timer = setTimeout(() => {
-      if (flowState === "RESUME") {
+      if (flowState === "PAUSE") {
         setBarPercentage(barPercentage - (barPercentage / ((minutes*60)+seconds)))
         dispatch({ type: "seconds decrease" });
         if (seconds === 0) {
@@ -42,10 +42,13 @@ export default function Clock({ minutes, seconds, dispatch,barPercentage,setBarP
           <div
             className="text-[#fff] tracking-[.25em] cursor-pointer"
             onClick={() => {
-              if (flowState === "RESUME") {
-                setFlowState("PAUSE");
-              } else {
-                setFlowState("RESUME");
+              switch(flowState){
+                case "RESUME":
+                   setFlowState("PAUSE");
+                   break
+                case "PAUSE":
+                  setFlowState("RESUME");
+                  break
               }
             }}
           >
