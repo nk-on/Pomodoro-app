@@ -15,7 +15,7 @@ type TimerAction =
   | { type: "minutes decrease" }
   | { type: string };
 function App() {
-  const initialStates = [
+  const initialStates: { mode: string; state: TimerState }[] = [
     {
       mode: "Pomodoro",
       state: { minutes: 24, seconds: 59 },
@@ -31,32 +31,35 @@ function App() {
   ];
   const mode = useRef("Pomodoro");
   const [barPercentage, setBarPercentage] = useState<number>(100);
-  function reducer(state: TimerState, action: TimerAction): TimerState {
+  function reducer(
+    state: TimerState | undefined,
+    action: TimerAction
+  ): TimerState | undefined {
+    const resObj = initialStates.find((element) => element.mode === mode.current)?.state;
     if (action.type === "RESTART") {
-      setBarPercentage(100)
-      switch (mode.current) {
-        case "Pomodoro":
-          return { minutes: 24, seconds: 59 };
-        case "Short break":
-          return { minutes: 4, seconds: 59 };
-        default:
-          return { minutes: 9, seconds: 59 };
-      }
+      setBarPercentage(100);
+      return resObj;
     }
     switch (action.type) {
       case "Pomodoro":
         mode.current = "Pomodoro";
-        return { minutes: 24, seconds: 59 };
+        return resObj
       case "Short break":
         mode.current = "Short break";
-        return { minutes: 4, seconds: 59 };
+        return resObj;
       case "seconds decrease":
-        return { ...state, seconds: state.seconds - 1 };
+        if (state) {
+          return { ...state, seconds: state.seconds - 1 };
+        }
+        break;
       case "minutes decrease":
-        return { minutes: state.minutes - 1, seconds: 59 };
+        if (state) {
+          return { ...state, seconds: state.minutes - 1 };
+        }
+        break;
       default:
         mode.current = "Long break";
-        return { minutes: 9, seconds: 59 };
+        return resObj
     }
   }
   const [state, dispatch] = useReducer(reducer, initialStates[0].state);
@@ -66,13 +69,15 @@ function App() {
         <div className="h-[20%]">
           <Menu dispatch={dispatch} setBarPercentage={setBarPercentage} />
         </div>
-        <Clock
-          minutes={state.minutes}
-          seconds={state.seconds}
-          dispatch={dispatch}
-          barPercentage={barPercentage}
-          setBarPercentage={setBarPercentage}
-        />
+        {state && (
+          <Clock
+            minutes={state.minutes}
+            seconds={state.seconds}
+            dispatch={dispatch}
+            barPercentage={barPercentage}
+            setBarPercentage={setBarPercentage}
+          />
+        )}
       </div>
     </>
   );
