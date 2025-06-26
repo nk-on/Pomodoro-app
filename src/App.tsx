@@ -26,7 +26,7 @@ function App() {
     },
     {
       mode: "Long break",
-      state: { minutes: 4, seconds: 59 },
+      state: { minutes: 9, seconds: 59 },
     },
   ];
   const mode = useRef("Pomodoro");
@@ -38,7 +38,6 @@ function App() {
     const resObj = initialStates.find((element) => element.mode === mode.current)?.state;
     if (action.type === "RESTART") {
       setBarPercentage(100);
-      return resObj;
     }
     switch (action.type) {
       case "Pomodoro":
@@ -54,7 +53,7 @@ function App() {
         break;
       case "minutes decrease":
         if (state) {
-          return { ...state, seconds: state.minutes - 1 };
+          return { seconds:59, minutes: state.minutes - 1 };
         }
         break;
       default:

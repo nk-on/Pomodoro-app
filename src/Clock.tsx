@@ -9,7 +9,7 @@ interface Clock {
 export default function Clock({ minutes, seconds, dispatch,barPercentage,setBarPercentage}: Clock) {
    const [flowState, setFlowState] = useState<string>("PAUSE");
   useEffect(() => {
-    setFlowState("PAUSE")
+    // setFlowState("PAUSE")
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
       return;
