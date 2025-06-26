@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { act, useReducer, useRef } from "react";
 import "./App.css";
 import Clock from "./Clock";
 import Menu from "./Menu/Menu";
@@ -38,28 +38,16 @@ function App() {
     const resObj = initialStates.find((element) => element.mode === mode.current)?.state;
     if (action.type === "RESTART") {
       setBarPercentage(100);
+      return resObj;
     }
-    switch (action.type) {
-      case "Pomodoro":
-        mode.current = "Pomodoro";
-        return resObj
-      case "Short break":
-        mode.current = "Short break";
-        return resObj;
-      case "seconds decrease":
-        if (state) {
-          return { ...state, seconds: state.seconds - 1 };
-        }
-        break;
-      case "minutes decrease":
-        if (state) {
-          return { seconds:59, minutes: state.minutes - 1 };
-        }
-        break;
-      default:
-        mode.current = "Long break";
-        return resObj
+    if(action.type === "seconds decrease" && state){
+      return { ...state, seconds: state.seconds - 1 };
     }
+    if(action.type === "minutes decrease" && state){
+      return { seconds:59, minutes: state.minutes - 1 };
+    }
+    mode.current = action.type;
+    return resObj
   }
   const [state, dispatch] = useReducer(reducer, initialStates[0].state);
   return (
