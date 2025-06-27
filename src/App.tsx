@@ -5,21 +5,8 @@ import Menu from "./Menu/Menu";
 import { useState } from "react";
 import type { TimerState } from "./Interfaces";
 import type { TimerAction } from "./Interfaces";
+import { initialStates } from "./initialStates";
 function App() {
-  const initialStates: { mode: string; state: TimerState }[] = [
-    {
-      mode: "Pomodoro",
-      state: { minutes: 24, seconds: 59 },
-    },
-    {
-      mode: "Short break",
-      state: { minutes: 4, seconds: 59 },
-    },
-    {
-      mode: "Long break",
-      state: { minutes: 9, seconds: 59 },
-    },
-  ];
   const mode = useRef("Pomodoro");
   const [barPercentage, setBarPercentage] = useState<number>(100);
   function reducer(
