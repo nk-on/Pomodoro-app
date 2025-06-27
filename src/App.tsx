@@ -3,17 +3,8 @@ import "./App.css";
 import Clock from "./Clock";
 import Menu from "./Menu/Menu";
 import { useState } from "react";
-interface TimerState {
-  minutes: number;
-  seconds: number;
-}
-
-type TimerAction =
-  | { type: "Pomodoro" }
-  | { type: "Short break" }
-  | { type: "seconds decrease" }
-  | { type: "minutes decrease" }
-  | { type: string };
+import type { TimerState } from "./Interfaces";
+import type { TimerAction } from "./Interfaces";
 function App() {
   const initialStates: { mode: string; state: TimerState }[] = [
     {

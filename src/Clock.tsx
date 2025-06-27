@@ -1,11 +1,5 @@
 import { useEffect,useState} from "react";
-interface Clock {
-  minutes: number;
-  seconds: number;
-  dispatch: React.ActionDispatch<[action: { type: string }]>;
-  barPercentage:number,
-  setBarPercentage:React.Dispatch<React.SetStateAction<number>>,
-}
+import type { Clock } from "./Interfaces";
 export default function Clock({ minutes, seconds, dispatch,barPercentage,setBarPercentage}: Clock) {
    const [flowState, setFlowState] = useState<string>("PAUSE");
   useEffect(() => {

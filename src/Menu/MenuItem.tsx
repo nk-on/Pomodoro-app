@@ -1,11 +1,4 @@
-interface MyComponentProps {
-  title: string;
-  id: number;
-  selectedId: number;
-  setSelectedId: React.Dispatch<React.SetStateAction<number>>;
-  dispatch: React.ActionDispatch<[action: { type: string }]>;
-  setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
-}
+import type { MyComponentProps } from "../Interfaces";
 export default function MenuItem({
   title,
   id,
