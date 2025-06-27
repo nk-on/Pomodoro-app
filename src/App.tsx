@@ -1,32 +1,12 @@
-import { useReducer, useRef } from "react";
+import { useReducer} from "react";
 import "./App.css";
 import Clock from "./Clock";
 import Menu from "./Menu/Menu";
 import { useState } from "react";
-import type { TimerState } from "./Interfaces";
-import type { TimerAction } from "./Interfaces";
 import { initialStates } from "./initialStates";
+import reducer from "./Reducer";
 function App() {
-  const mode = useRef("Pomodoro");
   const [barPercentage, setBarPercentage] = useState<number>(100);
-  function reducer(
-    state: TimerState | undefined,
-    action: TimerAction
-  ): TimerState | undefined {
-    const resObj = initialStates.find((element) => element.mode === mode.current)?.state;
-    if (action.type === "RESTART") {
-      setBarPercentage(100);
-      return resObj;
-    }
-    if(action.type === "seconds decrease" && state){
-      return { ...state, seconds: state.seconds - 1 };
-    }
-    if(action.type === "minutes decrease" && state){
-      return { seconds:59, minutes: state.minutes - 1 };
-    }
-    mode.current = action.type;
-    return resObj
-  }
   const [state, dispatch] = useReducer(reducer, initialStates[0].state);
   return (
     <>
