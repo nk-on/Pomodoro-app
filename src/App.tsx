@@ -1,4 +1,4 @@
-import { act, useReducer, useRef } from "react";
+import { useReducer, useRef } from "react";
 import "./App.css";
 import Clock from "./Clock";
 import Menu from "./Menu/Menu";
