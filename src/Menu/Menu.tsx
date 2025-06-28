@@ -4,10 +4,12 @@ import { useState } from "react";
 interface MenuProps {
   dispatch: React.ActionDispatch<[action: { type: string }]>;
   setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
+  mode:React.RefObject<string>
 }
 export default function Menu({
   dispatch,
   setBarPercentage,
+  mode
 }: MenuProps) {
   const [selectedId, setSelectedId] = useState<number>(-1);
   return (
@@ -22,6 +24,7 @@ export default function Menu({
             setSelectedId={setSelectedId}
             dispatch={dispatch}
             setBarPercentage={setBarPercentage}
+            mode = {mode}
           />
         );
       })}

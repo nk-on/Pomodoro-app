@@ -6,10 +6,8 @@ export default function reducer(
   action: TimerAction
 ): TimerState | undefined {
   const mode = action.type;
+
   const resObj = initialStates.find((element) => element.mode === mode)?.state;
-  if (action.type === "RESTART") {
-    return resObj;
-  }
   if (action.type === "seconds decrease" && state) {
     return { ...state, seconds: state.seconds - 1 };
   }

@@ -6,6 +6,7 @@ export default function MenuItem({
   setSelectedId,
   dispatch,
   setBarPercentage,
+  mode
 }: MyComponentProps) {
   return (
     <div
@@ -16,6 +17,7 @@ export default function MenuItem({
         setSelectedId(id);
         setBarPercentage(100);
         dispatch({ type: title });
+        mode.current = title;
       }}
     >
       {title}
