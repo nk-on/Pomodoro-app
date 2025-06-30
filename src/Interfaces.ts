@@ -15,6 +15,7 @@ export interface Clock {
   dispatch: React.ActionDispatch<[action: { type: string }]>;
   barPercentage:number,
   setBarPercentage:React.Dispatch<React.SetStateAction<number>>,
+  mode:React.RefObject<string>
 }
 export interface MyComponentProps {
   title: string;
@@ -23,4 +24,5 @@ export interface MyComponentProps {
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
   dispatch: React.ActionDispatch<[action: { type: string }]>;
   setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
+  mode:React.RefObject<string>
 }
