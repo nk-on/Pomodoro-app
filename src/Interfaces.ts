@@ -26,3 +26,6 @@ export interface MyComponentProps {
   setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
   mode:React.RefObject<string>
 }
+export interface TimerProps {
+  setSettingsVisible:React.Dispatch<React.SetStateAction<boolean>>
+}
