@@ -15,12 +15,13 @@ function Settings({ setSettingsVisible }: TimerProps) {
       <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
       <div className="flex flex-col items-start p-0 gap-[30px] py-[10px] px-[10px]">
         <h1 className="font-bold tracking-[3px]">TIME (MINUTES)</h1>
-        <div className="flex justify-between max-w-[90%]">
+        <div className="flex justify-between max-w-[90%] gap-[10px]">
           <TimeInput title = {"pomodoro"}/>
           <TimeInput title={"Short break"} />
           <TimeInput title = {'Long break'} />
         </div>
       </div>
+      <button className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[45%] left-[35%]">Apply</button>
     </div>
   );
 }
