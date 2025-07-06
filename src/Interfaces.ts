@@ -42,3 +42,7 @@ export interface StoreType {
   minutesDecrease: () => void;
   modeSwitch: (mode: { current: string }) => void;
 }
+export interface MenuProps {
+  setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
+  mode:React.RefObject<string>
+}

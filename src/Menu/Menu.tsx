@@ -1,11 +1,7 @@
 import MenuItem from "./MenuItem";
 import { menuItems } from "./menuItems";
 import { useState } from "react";
-interface MenuProps {
-  dispatch: React.ActionDispatch<[action: { type: string }]>;
-  setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
-  mode:React.RefObject<string>
-}
+import type { MenuProps } from "../Interfaces";
 export default function Menu({
   setBarPercentage,
   mode
