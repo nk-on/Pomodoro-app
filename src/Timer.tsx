@@ -1,6 +1,5 @@
 import Menu from "./Menu/Menu";
-import { useReducer, useState, useRef } from "react";
-import reducer from "./Reducer";
+import { useState, useRef } from "react";
 import Clock from "./Clock";
 import type { TimerProps } from "./Interfaces";
 import { useStore } from "./store";
