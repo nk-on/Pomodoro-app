@@ -7,7 +7,6 @@ interface MenuProps {
   mode:React.RefObject<string>
 }
 export default function Menu({
-  dispatch,
   setBarPercentage,
   mode
 }: MenuProps) {
@@ -22,7 +21,6 @@ export default function Menu({
             id={element.id}
             selectedId={selectedId}
             setSelectedId={setSelectedId}
-            dispatch={dispatch}
             setBarPercentage={setBarPercentage}
             mode = {mode}
           />

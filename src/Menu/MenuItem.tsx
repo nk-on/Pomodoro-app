@@ -1,13 +1,14 @@
 import type { MyComponentProps } from "../Interfaces";
+import { useStore } from "../store";
 export default function MenuItem({
   title,
   id,
   selectedId,
   setSelectedId,
-  dispatch,
   setBarPercentage,
   mode
 }: MyComponentProps) {
+  const modeSwitch = useStore((state)=> state.modeSwitch);
   return (
     <div
       className={` font-bold w-[33%] h-[100%] lg:text-[14px]   flex justify-center items-center cursor-pointer ${
@@ -16,8 +17,8 @@ export default function MenuItem({
       onClick={() => {
         setSelectedId(id);
         setBarPercentage(100);
-        dispatch({ type: title });
         mode.current = title;
+        modeSwitch(mode)
       }}
     >
       {title}
