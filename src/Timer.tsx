@@ -6,17 +6,17 @@ import type { TimerProps } from "./Interfaces";
 import { useStore } from "./store";
 function Timer({ setSettingsVisible }: TimerProps) {
   const [barPercentage, setBarPercentage] = useState<number>(100);
-  const  timerStates = useStore((state)=> state.timerStates);
+  const  timerState = useStore((state)=> state.timerState);
   const mode = useRef("Pomodoro");
   return (
     <>
       <div className="h-[20%]">
         <Menu setBarPercentage={setBarPercentage} mode={mode} />
       </div>
-      { timerStates && (
+      { timerState && (
         <Clock
-          minutes={timerStates[0].state.minutes}
-          seconds={timerStates[0].state.seconds}
+          minutes={timerState.minutes}
+          seconds={timerState.seconds}
           barPercentage={barPercentage}
           setBarPercentage={setBarPercentage}
           mode={mode}

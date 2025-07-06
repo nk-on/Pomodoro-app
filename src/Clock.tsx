@@ -14,9 +14,9 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage,
     const timer = setTimeout(() => {
       if (flowState === "PAUSE") {
         setBarPercentage(barPercentage - (barPercentage / ((minutes*60)+seconds)))
-        decreaseSeconds(mode.current)
+        decreaseSeconds();
         if (seconds === 0) {
-           decreaseMinutes(mode.current)
+           decreaseMinutes();
         }
       }
     }, 1000);
@@ -50,7 +50,6 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage,
                 default:
                   setFlowState("PAUSE");
                   setBarPercentage(100)
-                  increaseSeconds(mode.current);
               }
             }}
           >
