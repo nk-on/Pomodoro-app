@@ -4,7 +4,6 @@ import { useState } from "react";
 import type { MenuProps } from "../Interfaces";
 export default function Menu({
   setBarPercentage,
-  mode
 }: MenuProps) {
   const [selectedId, setSelectedId] = useState<number>(-1);
   return (
@@ -18,7 +17,6 @@ export default function Menu({
             selectedId={selectedId}
             setSelectedId={setSelectedId}
             setBarPercentage={setBarPercentage}
-            mode = {mode}
           />
         );
       })}

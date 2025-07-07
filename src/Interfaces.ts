@@ -12,10 +12,8 @@ export type TimerAction =
 export interface Clock {
   minutes: number;
   seconds: number;
-  dispatch: React.ActionDispatch<[action: { type: string }]>;
   barPercentage: number,
   setBarPercentage: React.Dispatch<React.SetStateAction<number>>,
-  mode: React.RefObject<string>
 }
 export interface MyComponentProps {
   title: string;
@@ -30,19 +28,22 @@ export interface TimerProps {
 }
 export interface TimeInputProps {
   title: string,
-  timerMode:number,
   setFunction: React.Dispatch<React.SetStateAction<number>>;
 }
 export interface TimerState {
-    minutes:number ; seconds:number
+  minutes: number; seconds: number
 }
 export interface StoreType {
   timerState: TimerState;
+  mode: string;
   secondsDecrease: () => void;
   minutesDecrease: () => void;
-  modeSwitch: (mode: { current: string }) => void;
-}
-export interface MenuProps {
-  setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
-  mode:React.RefObject<string>
+  setMode: (clickedMode: string) => void; // Capital M to match implementation
+  modeSwitch: (mode:string) => void;
+  customTime: (
+    minutesPomodoro: number,
+    minutesShortBreak: number,
+    minutesLongBreak: number,
+    mode: string
+  ) => void;
 }

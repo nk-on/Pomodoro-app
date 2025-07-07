@@ -1,16 +1,15 @@
 import Menu from "./Menu/Menu";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Clock from "./Clock";
 import type { TimerProps } from "./Interfaces";
 import { useStore } from "./store";
 function Timer({ setSettingsVisible }: TimerProps) {
   const [barPercentage, setBarPercentage] = useState<number>(100);
   const  timerState = useStore((state)=> state.timerState);
-  const mode = useRef("Pomodoro");
   return (
     <>
       <div className="h-[20%]">
-        <Menu setBarPercentage={setBarPercentage} mode={mode} />
+        <Menu setBarPercentage={setBarPercentage}  />
       </div>
       { timerState && (
         <Clock
@@ -18,7 +17,6 @@ function Timer({ setSettingsVisible }: TimerProps) {
           seconds={timerState.seconds}
           barPercentage={barPercentage}
           setBarPercentage={setBarPercentage}
-          mode={mode}
         />
       )}
       <div

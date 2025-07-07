@@ -3,7 +3,6 @@ import type { Clock } from "./Interfaces";
 import { useStore } from "./store";
 export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}: Clock) {
    const [flowState, setFlowState] = useState<string>("PAUSE");
-   console.log(minutes,seconds)
    const decreaseSeconds= useStore((state)=> state.secondsDecrease);
    const decreaseMinutes = useStore((state)=>  state.minutesDecrease);
   useEffect(() => {

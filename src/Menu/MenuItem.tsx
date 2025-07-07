@@ -6,9 +6,9 @@ export default function MenuItem({
   selectedId,
   setSelectedId,
   setBarPercentage,
-  mode
 }: MyComponentProps) {
   const modeSwitch = useStore((state)=> state.modeSwitch);
+  const setMode  = useStore((state)=> state.setMode);
   return (
     <div
       className={` font-bold w-[33%] h-[100%] lg:text-[14px]   flex justify-center items-center cursor-pointer ${
@@ -17,8 +17,9 @@ export default function MenuItem({
       onClick={() => {
         setSelectedId(id);
         setBarPercentage(100);
-        mode.current = title;
-        modeSwitch(mode)
+        modeSwitch(title);
+        setMode(title);
+
       }}
     >
       {title}
