@@ -1,9 +1,27 @@
+import { useRef } from "react";
 import type { TimerProps } from "../Interfaces";
 import TimeInput from "./TimeInput";
+import { useStore } from "../store";
 
-function Settings({
-  setSettingsVisible,
-}: TimerProps) {
+function Settings({ setSettingsVisible }: TimerProps) {
+  const  customTime = useStore((state)=> state.customTime);
+  const customValues = useRef([
+    {
+      minutes: 0,
+      seconds: 59,
+      title: "pomodoro",
+    },
+    {
+      minutes: 0,
+      seconds: 59,
+      title: "Short break",
+    },
+    {
+      minutes: 0,
+      seconds: 59,
+      title: "Long break",
+    },
+  ]);
   return (
     <div className="lg:w-[540px] w-[90%] h-[491px] bg-[#fff] rounded-[25px]">
       <div className="flex justify-between px-[15px] py-[20px] cursor-pointer ">
@@ -18,18 +36,17 @@ function Settings({
       <div className="flex flex-col items-start p-0 gap-[30px] py-[10px] px-[10px]">
         <h1 className="font-bold tracking-[3px]">TIME (MINUTES)</h1>
         <div className="flex justify-between max-w-[90%] gap-[10px]">
-          <TimeInput title={"pomodoro"}  />
-          <TimeInput
-            title={"Short break"}
-          />
-          <TimeInput
-            title={"Long break"}
-          />
+          <TimeInput title={"pomodoro"} customvaluesObj={customValues} />
+          <TimeInput title={"Short break"} customvaluesObj={customValues} />
+          <TimeInput title={"Long break"} customvaluesObj={customValues} />
         </div>
       </div>
       <button
         className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[45%] left-[35%]"
-        onClick={() => setSettingsVisible((settingsVisible) => !settingsVisible)}
+        onClick={() => {
+          setSettingsVisible((settingsVisible) => !settingsVisible);
+          customTime(customValues.current[0].minutes,customValues.current[1].minutes,customValues.current[2].minutes);
+        }}
       >
         Apply
       </button>
