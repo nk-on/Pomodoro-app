@@ -1,22 +1,19 @@
 import { create } from "zustand";
 import type {StoreType}  from "./Interfaces";
-
-let [pomodoroMinutes,pomodoroSeconds] = [24,59];
-let [shortBreakMinutes,shortBreakSeconds] = [4,59];
-let  [longBreakMinutes,longBreakSeconds] = [9,59];
+let [pomodoroMinutes,shortBreakMinutes,longBreakMinutes] = [24,4,9]
 export const useStore = create<StoreType>((set) => ({
-    timerState: { minutes: pomodoroMinutes, seconds: pomodoroSeconds},
+    timerState: { minutes: pomodoroMinutes, seconds: 59},
     mode:'',
     secondsDecrease: () => set((state)=> ({timerState:{...state.timerState, seconds: state.timerState.seconds - 1 }})),
     minutesDecrease: () =>  set((state) => ({ timerState:{minutes: state.timerState.minutes - 1, seconds:59}})),
     modeSwitch:(mode:string)=> {
        if(mode === "Short break"){
-            return set(()=>({timerState:{ minutes: shortBreakMinutes, seconds: shortBreakSeconds}}))
+            return set(()=>({timerState:{ minutes: shortBreakMinutes, seconds: 59}}))
         }
         if(mode === "Long break"){
-            return set(()=>({timerState:{minutes:longBreakMinutes,seconds:longBreakSeconds}}))
+            return set(()=>({timerState:{minutes:longBreakMinutes,seconds:59}}))
         }
-        return set(()=> ({timerState:{minutes:pomodoroMinutes,seconds:pomodoroSeconds}}))
+        return set(()=> ({timerState:{minutes:pomodoroMinutes,seconds:59}}))
     },
     setMode:(clickedMode)=>{
         return set(()=> ({mode:clickedMode}))
