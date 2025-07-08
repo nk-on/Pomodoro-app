@@ -25,6 +25,6 @@ export const useStore = create<StoreType>((set) => ({
          pomodoroMinutes = minutesPomodoro;
          shortBreakMinutes = minutesShortBreak;
          longBreakMinutes = minutesLongBreak;
-         set(()=> ({timerState:{...this.timerState, minutes:minutesPomodoro}}))
+         return set((state)=> ({timerState:{...state.timerState, minutes:minutesPomodoro}}))
     },
 }))
