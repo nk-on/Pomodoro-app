@@ -1,10 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { TimerProps } from "../Interfaces";
 import TimeInput from "./TimeInput";
 import { useStore } from "../store";
-
+import FontInput from "./FontInput";
+import { fontData } from "./fontComponents";
 function Settings({ setSettingsVisible }: TimerProps) {
-  const  customTime = useStore((state)=> state.customTime);
+  const customTime = useStore((state) => state.customTime);
+  const [selectedId, setSelectedId] = useState<number>(-1)
   const customValues = useRef([
     {
       minutes: 0,
@@ -33,7 +35,7 @@ function Settings({ setSettingsVisible }: TimerProps) {
         />
       </div>
       <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
-      <div className="flex flex-col items-start p-0 gap-[30px] py-[10px] px-[10px]">
+      <div className="flex flex-col items-start p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
         <h1 className="font-bold tracking-[3px]">TIME (MINUTES)</h1>
         <div className="flex justify-between max-w-[90%] gap-[10px]">
           <TimeInput title={"pomodoro"} customvaluesObj={customValues} />
@@ -41,11 +43,24 @@ function Settings({ setSettingsVisible }: TimerProps) {
           <TimeInput title={"Long break"} customvaluesObj={customValues} />
         </div>
       </div>
+      <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
+      <div className="flex justify-between items-start p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
+        <h1 className="font-bold tracking-[3px]">Font</h1>
+        <div className="flex justify-between max-w-[90%] gap-[10px]">
+          {fontData.map(({ id, font }) => (
+            <FontInput key={id} font={font} id = {id} selectedId = {selectedId} setSelectedId = {setSelectedId} />
+          ))}
+        </div>
+      </div>
       <button
-        className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[45%] left-[35%]"
+        className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[25%] left-[35%]"
         onClick={() => {
           setSettingsVisible((settingsVisible) => !settingsVisible);
-          customTime(customValues.current[0].minutes,customValues.current[1].minutes,customValues.current[2].minutes);
+          customTime(
+            customValues.current[0].minutes,
+            customValues.current[1].minutes,
+            customValues.current[2].minutes
+          );
         }}
       >
         Apply

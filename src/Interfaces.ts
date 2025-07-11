@@ -21,29 +21,32 @@ export interface MyComponentProps {
   selectedId: number;
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
   setBarPercentage: React.Dispatch<React.SetStateAction<number>>;
-  mode: React.RefObject<string>
 }
 export interface TimerProps {
   setSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface TimeInputProps {
   title: string,
+  timerMode: number,
   setFunction: React.Dispatch<React.SetStateAction<number>>;
 }
 export interface TimerState {
-  minutes: number; seconds: number
+  minutes: number;
+  seconds: number;
 }
 export interface StoreType {
   timerState: TimerState;
   mode: string;
+  font:string;
   secondsDecrease: () => void;
   minutesDecrease: () => void;
   setMode: (clickedMode: string) => void; // Capital M to match implementation
-  modeSwitch: (mode:string) => void;
+  modeSwitch: (mode: string) => void;
   customTime: (
     minutesPomodoro: number,
     minutesShortBreak: number,
     minutesLongBreak: number,
-    mode: string
   ) => void;
+   setFont:(selectedFont:string)=> void;
 }
+export interface TimeInputProps { title: string; customvaluesObj: React.RefObject<{ minutes: number; seconds: number; title: string; }[]>; }

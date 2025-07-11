@@ -1,10 +1,9 @@
 import MenuItem from "./MenuItem";
 import { menuItems } from "./menuItems";
 import { useState } from "react";
-import type { MenuProps } from "../Interfaces";
 export default function Menu({
   setBarPercentage,
-}: MenuProps) {
+}:{setBarPercentage:React.Dispatch<React.SetStateAction<number>>}) {
   const [selectedId, setSelectedId] = useState<number>(-1);
   return (
     <div className="lg:w-[35vw] w-[90vw] h-[56px] bg-[#151932] rounded-[25px] flex justify-between items-center px-[10px]">
