@@ -9,17 +9,17 @@ function Settings({ setSettingsVisible }: TimerProps) {
   const [selectedId, setSelectedId] = useState<number>(-1)
   const customValues = useRef([
     {
-      minutes: 0,
+      minutes: 24,
       seconds: 59,
       title: "pomodoro",
     },
     {
-      minutes: 0,
+      minutes: 5,
       seconds: 59,
       title: "Short break",
     },
     {
-      minutes: 0,
+      minutes: 9,
       seconds: 59,
       title: "Long break",
     },
