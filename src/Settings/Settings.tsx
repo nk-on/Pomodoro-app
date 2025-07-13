@@ -70,7 +70,7 @@ function Settings({ setSettingsVisible }: TimerProps) {
         <h1 className="font-bold tracking-[3px]">Color</h1>
         <div className="flex justify-between max-w-[90%] gap-[10px]">
           {
-            colors.map(element =>  <Color color={element.color} />)
+            colors.map(element =>  <Color key={element.id} color={element.color} selectedId={state.colorId} id = {element.id} dispatch={dispatch}  />)
           }
         </div>
       </div>
