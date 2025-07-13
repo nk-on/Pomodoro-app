@@ -1,12 +1,20 @@
-import { useRef, useState } from "react";
+import { act, useReducer, useRef, useState } from "react";
 import type { TimerProps } from "../Interfaces";
 import TimeInput from "./TimeInput";
 import { useStore } from "../store";
 import FontInput from "./FontInput";
 import { fontData } from "./fontComponents";
+import { colors } from "./colorInput";
+import Color from "./Color";
 function Settings({ setSettingsVisible }: TimerProps) {
   const customTime = useStore((state) => state.customTime);
-  const [selectedId, setSelectedId] = useState<number>(-1)
+  function reducer(state,action){
+     if(action.type === 'colorInput'){
+      return {...state, colorId:action.payload.id}
+     }
+    return {...state, fontId:action.payload.id}
+  }
+  const [state,dispatch] = useReducer(reducer,{fontId:-1, colorId:-1});
   const customValues = useRef([
     {
       minutes: 24,
@@ -48,8 +56,22 @@ function Settings({ setSettingsVisible }: TimerProps) {
         <h1 className="font-bold tracking-[3px]">Font</h1>
         <div className="flex justify-between max-w-[90%] gap-[10px]">
           {fontData.map(({ id, font }) => (
-            <FontInput key={id} font={font} id = {id} selectedId = {selectedId} setSelectedId = {setSelectedId} />
+            <FontInput
+              key={id}
+              font={font}
+              id={id}
+              selectedId={state.fontId}
+              dispatch = {dispatch}
+            />
           ))}
+        </div>
+      </div>
+      <div className="flex justify-between items-start p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
+        <h1 className="font-bold tracking-[3px]">Color</h1>
+        <div className="flex justify-between max-w-[90%] gap-[10px]">
+          {
+            colors.map(element =>  <Color color={element.color} />)
+          }
         </div>
       </div>
       <button
