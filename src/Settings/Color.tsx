@@ -1,5 +1,5 @@
 import { useStore } from "../store";
-
+import type { Action } from "../Interfaces";
 function Color({
   color,
   selectedId,
@@ -9,7 +9,7 @@ function Color({
   color: string;
   selectedId:number,
   id: number;
-  dispatch: React.ActionDispatch<[action: { type: string; payload: { id: number } }]>;
+  dispatch: React.ActionDispatch<[action: Action]>;
 }) {
    const setColor = useStore((state)=> state.setColor);
   return (

@@ -1,5 +1,5 @@
 import type { TimeInputProps } from "../Interfaces";
-function TimeInput({  customvaluesObj }: TimeInputProps) {
+function TimeInput({ title, customvaluesObj }: TimeInputProps) {
   return (
     <>
       <div className="w-[100%]">

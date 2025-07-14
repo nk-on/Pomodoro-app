@@ -25,11 +25,6 @@ export interface MyComponentProps {
 export interface TimerProps {
   setSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export interface TimeInputProps {
-  title: string,
-  timerMode: number,
-  setFunction: React.Dispatch<React.SetStateAction<number>>;
-}
 export interface TimerState {
   minutes: number;
   seconds: number;
@@ -37,8 +32,8 @@ export interface TimerState {
 export interface StoreType {
   timerState: TimerState;
   mode: string;
-  font:string;
-  mainColor:string;
+  font: string;
+  mainColor: string;
   secondsDecrease: () => void;
   minutesDecrease: () => void;
   setMode: (clickedMode: string) => void; // Capital M to match implementation
@@ -48,7 +43,14 @@ export interface StoreType {
     minutesShortBreak: number,
     minutesLongBreak: number,
   ) => void;
-   setFont:(selectedFont:string)=> void;
-   setColor:(selectedColor:string)=> void;
+  setFont: (selectedFont: string) => void;
+  setColor: (selectedColor: string) => void;
 }
 export interface TimeInputProps { title: string; customvaluesObj: React.RefObject<{ minutes: number; seconds: number; title: string; }[]>; }
+export interface State {
+  fontId: number;
+  colorId: number;
+}
+export type Action =
+  | { type: "colorInput"; payload: { id: number } }
+  | { type: "fontInput"; payload: { id: number } };

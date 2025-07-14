@@ -6,9 +6,11 @@ import FontInput from "./FontInput";
 import { fontData } from "./fontComponents";
 import { colors } from "./colorInput";
 import Color from "./Color";
+import type { State } from "../Interfaces";
+import type { Action } from "../Interfaces";
 function Settings({ setSettingsVisible }: TimerProps) {
   const customTime = useStore((state) => state.customTime);
-  function reducer(state, action) {
+  function reducer(state:State, action:Action):State {
     if (action.type === "colorInput") {
       return { ...state, colorId: action.payload.id };
     }

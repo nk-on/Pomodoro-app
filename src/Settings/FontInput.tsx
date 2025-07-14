@@ -1,5 +1,6 @@
 import React from "react";
 import { useStore } from "../store";
+import type { Action } from "../Interfaces";
 export default function FontInput({
   font,
   id,
@@ -9,7 +10,7 @@ export default function FontInput({
   font: string;
   id:number
   selectedId: number;
-  dispatch:React.ActionDispatch<[action: {type:string,payload:{id:number}}]>
+  dispatch:React.ActionDispatch<[action: Action]>
 }) {
   const setFont = useStore((state)=> state.setFont)
   return (
