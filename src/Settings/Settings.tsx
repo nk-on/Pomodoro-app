@@ -75,7 +75,7 @@ function Settings({ setSettingsVisible }: TimerProps) {
         </div>
       </div>
       <button
-        className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[25%] left-[35%]"
+        className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[10%] left-[35%]"
         onClick={() => {
           setSettingsVisible((settingsVisible) => !settingsVisible);
           customTime(
