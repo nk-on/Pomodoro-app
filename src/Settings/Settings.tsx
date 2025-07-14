@@ -8,9 +8,10 @@ import { colors } from "./colorInput";
 import Color from "./Color";
 import type { State } from "../Interfaces";
 import type { Action } from "../Interfaces";
+import Section from "./Section";
 function Settings({ setSettingsVisible }: TimerProps) {
   const customTime = useStore((state) => state.customTime);
-  function reducer(state:State, action:Action):State {
+  function reducer(state: State, action: Action): State {
     if (action.type === "colorInput") {
       return { ...state, colorId: action.payload.id };
     }
@@ -61,35 +62,33 @@ function Settings({ setSettingsVisible }: TimerProps) {
         </div>
       </div>
       <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
-      <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
-        <h1 className="font-bold tracking-[3px]">Font</h1>
-        <div className="flex justify-between max-w-[90%] gap-[10px]">
-          {fontData.map(({ id, font }) => (
-            <FontInput
-              key={id}
-              font={font}
-              id={id}
-              selectedId={state.fontId}
-              dispatch={dispatch}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
-      <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
-        <h1 className="font-bold tracking-[3px]">Color</h1>
-        <div className="flex justify-between max-w-[90%] gap-[10px]">
-          {colors.map((element) => (
-            <Color
-              key={element.id}
-              color={element.color}
-              selectedId={state.colorId}
-              id={element.id}
-              dispatch={dispatch}
-            />
-          ))}
-        </div>
-      </div>
+      <Section
+        title="Font"
+        data={fontData}
+        renderItem={({ id, font }) => (
+          <FontInput
+            key={id}
+            font={font}
+            id={id}
+            selectedId={state.fontId}
+            dispatch={dispatch}
+          />
+        )}
+      />
+
+      <Section
+        title="Color"
+        data={colors}
+        renderItem={({ id, color }) => (
+          <Color
+            key={id}
+            color={color}
+            id={id}
+            selectedId={state.colorId}
+            dispatch={dispatch}
+          />
+        )}
+      />
       <button
         className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[2%] left-[30%]"
         onClick={() => {
