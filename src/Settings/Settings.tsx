@@ -1,4 +1,4 @@
-import { useReducer, useRef} from "react";
+import { useReducer, useRef } from "react";
 import type { TimerProps } from "../Interfaces";
 import TimeInput from "./TimeInput";
 import { useStore } from "../store";
@@ -8,13 +8,13 @@ import { colors } from "./colorInput";
 import Color from "./Color";
 function Settings({ setSettingsVisible }: TimerProps) {
   const customTime = useStore((state) => state.customTime);
-  function reducer(state,action){
-     if(action.type === 'colorInput'){
-      return {...state, colorId:action.payload.id}
-     }
-    return {...state, fontId:action.payload.id}
+  function reducer(state, action) {
+    if (action.type === "colorInput") {
+      return { ...state, colorId: action.payload.id };
+    }
+    return { ...state, fontId: action.payload.id };
   }
-  const [state,dispatch] = useReducer(reducer,{fontId:-1, colorId:-1});
+  const [state, dispatch] = useReducer(reducer, { fontId: -1, colorId: -1 });
   const customValues = useRef([
     {
       minutes: 24,
@@ -33,8 +33,8 @@ function Settings({ setSettingsVisible }: TimerProps) {
     },
   ]);
   return (
-    <div className="lg:w-[540px] w-[90%] h-[491px] bg-[#fff] rounded-[25px]">
-      <div className="flex justify-between px-[15px] py-[20px] cursor-pointer ">
+    <div className="lg:w-[540px] w-[90%] min-h-[491px] bg-[#fff] rounded-[25px]">
+      <div className="flex  justify-between px-[15px] py-[20px] cursor-pointer ">
         <h1 className="font-bold text-[28px]">Settings</h1>
         <img
           src="public/CloseButton.svg"
@@ -45,14 +45,21 @@ function Settings({ setSettingsVisible }: TimerProps) {
       <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
       <div className="flex flex-col items-start p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
         <h1 className="font-bold tracking-[3px]">TIME (MINUTES)</h1>
-        <div className="flex justify-between max-w-[90%] gap-[10px]">
-          <TimeInput title={"pomodoro"} customvaluesObj={customValues} />
-          <TimeInput title={"Short break"} customvaluesObj={customValues} />
-          <TimeInput title={"Long break"} customvaluesObj={customValues} />
+        <div className="flex lg:flex-col flex-row">
+          <div className="flex lg:flex-row flex-col  justify-between max-w-[90%] gap-[10px]">
+            <h1 className="text-[#A5A6B2]">Pomodoro</h1>
+            <h1 className="text-[#A5A6B2]">Short break</h1>
+            <h1 className="text-[#A5A6B2]">Long break</h1>
+          </div>
+          <div className="flex lg:flex-row flex-col  justify-between max-w-[90%] gap-[10px]">
+            <TimeInput title={"pomodoro"} customvaluesObj={customValues} />
+            <TimeInput title={"Short break"} customvaluesObj={customValues} />
+            <TimeInput title={"Long break"} customvaluesObj={customValues} />
+          </div>
         </div>
       </div>
       <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
-      <div className="flex justify-between items-start p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
+      <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
         <h1 className="font-bold tracking-[3px]">Font</h1>
         <div className="flex justify-between max-w-[90%] gap-[10px]">
           {fontData.map(({ id, font }) => (
@@ -61,21 +68,28 @@ function Settings({ setSettingsVisible }: TimerProps) {
               font={font}
               id={id}
               selectedId={state.fontId}
-              dispatch = {dispatch}
+              dispatch={dispatch}
             />
           ))}
         </div>
       </div>
-      <div className="flex justify-between items-start p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
+      <div className="w-[100%] h-[1px] bg-[#E3E1E1]"></div>
+      <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center p-0 gap-[30px] py-[10px] pb-[30px]  px-[10px]">
         <h1 className="font-bold tracking-[3px]">Color</h1>
         <div className="flex justify-between max-w-[90%] gap-[10px]">
-          {
-            colors.map(element =>  <Color key={element.id} color={element.color} selectedId={state.colorId} id = {element.id} dispatch={dispatch}  />)
-          }
+          {colors.map((element) => (
+            <Color
+              key={element.id}
+              color={element.color}
+              selectedId={state.colorId}
+              id={element.id}
+              dispatch={dispatch}
+            />
+          ))}
         </div>
       </div>
       <button
-        className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[10%] left-[35%]"
+        className="bg-[#F87070] text-[#fff] font-bold w-[140px] h-[53px] rounded-[26.5px] relative top-[2%] left-[30%]"
         onClick={() => {
           setSettingsVisible((settingsVisible) => !settingsVisible);
           customTime(

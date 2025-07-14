@@ -1,19 +1,8 @@
-interface customvaluesObj {
-  current: {
-    minutes: number;
-    seconds: number;
-    title: string;
-  }[];
-}
-interface TimeInput {
-  title: string;
-  customvaluesObj: customvaluesObj[];
-}
-function TimeInput({ title, customvaluesObj }: TimeInput) {
+import type { TimeInputProps } from "../Interfaces";
+function TimeInput({  customvaluesObj }: TimeInputProps) {
   return (
     <>
       <div className="w-[100%]">
-        <h1 className="text-[#A5A6B2]">{title}</h1>
         <div className="lg:w-[140px] h-[48px] bg-[#EFF1FA] rounded-[10px] flex justify-between items-center px-[10px]">
           <input
             type="number"
@@ -23,9 +12,8 @@ function TimeInput({ title, customvaluesObj }: TimeInput) {
             customvaluesObj.current = customvaluesObj.current.map((element) => {
                 if (title === element.title) {
                   return {
-                    ...customvaluesObj,
+                    ...element,
                     minutes: Number(e.target.value),
-                    title: title,
                   };
                 }
                 return element;
