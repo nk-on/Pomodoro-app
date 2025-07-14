@@ -5,6 +5,7 @@ export const useStore = create<StoreType>((set) => ({
     timerState: { minutes: pomodoroMinutes, seconds: 59},
     mode:'',
     font:'kumbh',
+    mainColor:'#F87070 ',
     secondsDecrease: () => set((state)=> ({timerState:{...state.timerState, seconds: state.timerState.seconds - 1 }})),
     minutesDecrease: () =>  set((state) => ({ timerState:{minutes: state.timerState.minutes - 1, seconds:59}})),
     modeSwitch:(mode:string)=> {
@@ -27,5 +28,8 @@ export const useStore = create<StoreType>((set) => ({
     },
     setFont(selectedFont:string){
         return set(()=> ({font:selectedFont}))
+    },
+    setColor(selectedColor:string){
+        return set(()=> ({mainColor:selectedColor}))
     }
 }));

@@ -38,6 +38,7 @@ export interface StoreType {
   timerState: TimerState;
   mode: string;
   font:string;
+  mainColor:string;
   secondsDecrease: () => void;
   minutesDecrease: () => void;
   setMode: (clickedMode: string) => void; // Capital M to match implementation
@@ -48,5 +49,6 @@ export interface StoreType {
     minutesLongBreak: number,
   ) => void;
    setFont:(selectedFont:string)=> void;
+   setColor:(selectedColor:string)=> void;
 }
 export interface TimeInputProps { title: string; customvaluesObj: React.RefObject<{ minutes: number; seconds: number; title: string; }[]>; }

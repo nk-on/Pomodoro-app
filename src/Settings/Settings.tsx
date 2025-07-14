@@ -1,4 +1,4 @@
-import { act, useReducer, useRef, useState } from "react";
+import { useReducer, useRef} from "react";
 import type { TimerProps } from "../Interfaces";
 import TimeInput from "./TimeInput";
 import { useStore } from "../store";
