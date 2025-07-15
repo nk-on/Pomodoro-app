@@ -54,3 +54,14 @@ export interface State {
 export type Action =
   | { type: "colorInput"; payload: { id: number } }
   | { type: "fontInput"; payload: { id: number } };
+export interface SectionProps<T> {
+    title: string;
+    data: T[];
+    renderItem: (item: T) => React.ReactNode;
+  }
+export interface FontInputProps {
+    font: string;
+    id:number
+    selectedId: number;
+    dispatch:React.ActionDispatch<[action: Action]>
+}

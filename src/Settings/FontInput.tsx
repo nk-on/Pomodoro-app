@@ -1,17 +1,12 @@
 import React from "react";
 import { useStore } from "../store";
-import type { Action } from "../Interfaces";
+import type { FontInputProps } from "../Interfaces";
 export default function FontInput({
   font,
   id,
   selectedId,
   dispatch,
-}: {
-  font: string;
-  id:number
-  selectedId: number;
-  dispatch:React.ActionDispatch<[action: Action]>
-}) {
+}: FontInputProps) {
   const setFont = useStore((state)=> state.setFont)
   return (
     <div

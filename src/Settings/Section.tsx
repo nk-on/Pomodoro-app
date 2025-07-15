@@ -1,11 +1,4 @@
-import React from "react";
-
-interface SectionProps<T> {
-  title: string;
-  data: T[];
-  renderItem: (item: T) => React.ReactNode;
-}
-
+import type { SectionProps } from '../Interfaces';
 export default function Section<T>({
   title,
   data,
