@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type { TimeInputProps } from '../Interfaces';
 function TimeInput({ title, customvaluesObj }: TimeInputProps) {
   const [value, setValue] = useState<string | number>('');
-  console.log(value);
   return (
     <>
       <div className="w-[100%]">
