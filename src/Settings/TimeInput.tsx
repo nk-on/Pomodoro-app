@@ -6,10 +6,14 @@ function TimeInput({ title, customvaluesObj }: TimeInputProps) {
         <div className="lg:w-[140px] h-[48px] bg-[#EFF1FA] rounded-[10px] flex justify-between items-center px-[10px]">
           <input
             type="number"
-            className="h-[48px] w-[50%]  bg-[#EFF1FA]"
+            className="h-[48px] w-[50%]  bg-[#EFF1FA] outline-none"
+            onKeyDown={(e)=>{
+              if(["-", "e", "E", "+", "."].includes(e.key)){
+                e.preventDefault();
+              }
+            }}
             onChange={(e) => {
-            console.log(e.target.value)
-            customvaluesObj.current = customvaluesObj.current.map((element) => {
+              customvaluesObj.current = customvaluesObj.current.map((element) => {
                 if (title === element.title) {
                   return {
                     ...element,
