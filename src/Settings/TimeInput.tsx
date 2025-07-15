@@ -12,7 +12,7 @@ function TimeInput({ title, customvaluesObj }: TimeInputProps) {
             value={value}
             className="h-[48px] w-[50%]  bg-[#EFF1FA] outline-none"
             onKeyDown={(e) => {
-              if (['-', 'e', 'E', '+', '.'].includes(e.key)) {
+              if (['-', 'e', 'E', '+', '.','0'].includes(e.key)) {
                 e.preventDefault();
               }
             }}
