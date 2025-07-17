@@ -6,6 +6,9 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}
    const decreaseSeconds= useStore((state)=> state.secondsDecrease);
    const decreaseMinutes = useStore((state)=>  state.minutesDecrease);
    const mainColor = useStore((state)=> state.mainColor);
+   function renderTimeUnit(unit){
+    return unit < 10 ? `:${unit}`: unit 
+   }
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
@@ -35,7 +38,7 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}
         <div className="w-[90%] h-[90%]  rounded-[50%] flex flex-col justify-center items-center" style={{ background: `conic-gradient(${mainColor} 0% ${barPercentage}%, #151932 ${barPercentage}% 100%)`}}>
           <div className="w-[90%] h-[90%] bg-[#151932] rounded-[50%] flex flex-col justify-center items-center">
           <div className="text-[#fff] font-bold text-[70px]">
-            {minutes < 10 ? `0${minutes}`: minutes}:{seconds < 10 ? `0${seconds}`: seconds}
+            {renderTimeUnit(minutes)}:{renderTimeUnit(seconds)}
           </div>
           <div
             className="text-[#fff] tracking-[.25em] cursor-pointer"
