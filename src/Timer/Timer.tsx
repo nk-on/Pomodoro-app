@@ -1,8 +1,8 @@
-import Menu from "./Menu/Menu";
+import Menu from "../Menu/Menu";
 import { useState } from "react";
 import Clock from "./Clock";
-import type { TimerProps } from "./Interfaces";
-import { useStore } from "./store";
+import type { TimerProps } from "../Interfaces";
+import { useStore } from "../store";
 function Timer({ setSettingsVisible }: TimerProps) {
   const [barPercentage, setBarPercentage] = useState<number>(100);
   const  timerState = useStore((state)=> state.timerState);

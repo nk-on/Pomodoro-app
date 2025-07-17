@@ -1,14 +1,12 @@
 import { useEffect,useState} from "react";
-import type { Clock } from "./Interfaces";
-import { useStore } from "./store";
+import type { Clock } from "../Interfaces";
+import { useStore } from "../store";
+import { renderTimeUnit } from "./renderTimeUnit";
 export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}: Clock) {
    const [flowState, setFlowState] = useState<string>("PAUSE");
    const decreaseSeconds= useStore((state)=> state.secondsDecrease);
    const decreaseMinutes = useStore((state)=>  state.minutesDecrease);
    const mainColor = useStore((state)=> state.mainColor);
-   function renderTimeUnit(unit:number):string | number{
-    return unit < 10 ? `:${unit}`: unit 
-   }
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
