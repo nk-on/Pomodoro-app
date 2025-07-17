@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Menu({
   setBarPercentage,
 }:{setBarPercentage:React.Dispatch<React.SetStateAction<number>>}) {
-  const [selectedId, setSelectedId] = useState<number>(-1);
+  const [selectedId, setSelectedId] = useState<number>(0);
   return (
     <div className="lg:w-[35vw] w-[90vw] h-[56px] bg-[#151932] rounded-[25px] flex justify-between items-center px-[10px]">
       {menuItems.map((element) => {

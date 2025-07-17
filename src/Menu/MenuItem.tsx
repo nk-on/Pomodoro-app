@@ -12,9 +12,10 @@ export default function MenuItem({
   const mainColor = useStore((state) => state.mainColor);
   return (
     <div
-      className="font-bold w-[33%] h-[100%] lg:text-[14px] text-[#636984]   flex justify-center items-center cursor-pointer rounded-[26.5px]"
+      className="font-bold w-[33%] h-[100%] lg:text-[14px]  text-[#636984]   flex justify-center items-center cursor-pointer rounded-[26.5px]"
       style={{
         backgroundColor: selectedId === id ? mainColor : "#151932",
+        color:selectedId === id ? "#1f213f" : "#636984",
       }}
       onClick={() => {
         setSelectedId(id);
