@@ -6,7 +6,7 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}
    const decreaseSeconds= useStore((state)=> state.secondsDecrease);
    const decreaseMinutes = useStore((state)=>  state.minutesDecrease);
    const mainColor = useStore((state)=> state.mainColor);
-   function renderTimeUnit(unit){
+   function renderTimeUnit(unit:number):string | number{
     return unit < 10 ? `:${unit}`: unit 
    }
   useEffect(() => {
