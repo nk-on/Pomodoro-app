@@ -65,3 +65,9 @@ export interface FontInputProps {
     selectedId: number;
     dispatch:React.ActionDispatch<[action: Action]>
 }
+export interface colorProps {
+    color: string;
+    selectedId:number,
+    id: number;
+    dispatch: React.ActionDispatch<[action: Action]>;
+}

@@ -1,16 +1,11 @@
 import { useStore } from "../store";
-import type { Action } from "../Interfaces";
+import type { colorProps } from "../Interfaces";
 function Color({
   color,
   selectedId,
   id,
   dispatch
-}: {
-  color: string;
-  selectedId:number,
-  id: number;
-  dispatch: React.ActionDispatch<[action: Action]>;
-}) {
+}: colorProps) {
    const setColor = useStore((state)=> state.setColor);
   return (
     <div
