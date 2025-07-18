@@ -36,6 +36,7 @@ export interface StoreType {
   mainColor: string;
   secondsDecrease: () => void;
   minutesDecrease: () => void;
+  restartTimer:(mode:string)=> void;
   setMode: (clickedMode: string) => void; // Capital M to match implementation
   modeSwitch: (mode: string) => void;
   customTime: (

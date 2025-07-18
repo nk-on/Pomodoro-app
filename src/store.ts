@@ -8,7 +8,15 @@ export const useStore = create<StoreType>((set) => ({
     mainColor: '#F87070 ',
     secondsDecrease: () => set((state) => ({ timerState: { ...state.timerState, seconds: state.timerState.seconds - 1 } })),
     minutesDecrease: () => set((state) => ({ timerState: { minutes: state.timerState.minutes - 1, seconds: 59 } })),
-    restartTimer: () => set(() => ({ timerState: { minutes: pomodoroMinutes, seconds: 59 } })),
+    restartTimer: (mode:string) => {
+         if (mode === "Short break") {
+            return set(() => ({ timerState: { minutes: shortBreakMinutes, seconds: 59 } }))
+        }
+        if (mode === "Long break") {
+            return set(() => ({ timerState: { minutes: longBreakMinutes, seconds: 59 } }))
+        }
+        return set(() => ({ timerState: { minutes: pomodoroMinutes, seconds: 59 } }))
+    },
     modeSwitch: (mode: string) => {
         if (mode === "Short break") {
             return set(() => ({ timerState: { minutes: shortBreakMinutes, seconds: 59 } }))
@@ -22,10 +30,10 @@ export const useStore = create<StoreType>((set) => ({
         return set(() => ({ mode: clickedMode }))
     },
     customTime(minutesPomodoro, minutesShortBreak, minutesLongBreak) {
-        pomodoroMinutes = minutesPomodoro - 1;
-        shortBreakMinutes = minutesShortBreak - 1;
-        longBreakMinutes = minutesLongBreak - 1;
-        return set(() => ({ timerState: {minutes: minutesPomodoro - 1,seconds:59} }))
+        pomodoroMinutes = minutesPomodoro;
+        shortBreakMinutes = minutesShortBreak;
+        longBreakMinutes = minutesLongBreak;
+        return set(() => ({ timerState: {minutes: minutesPomodoro,seconds:59} }))
     },
     setFont(selectedFont: string) {
         return set(() => ({ font: selectedFont }))

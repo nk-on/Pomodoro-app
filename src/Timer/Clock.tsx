@@ -7,6 +7,8 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}
    const decreaseSeconds= useStore((state)=> state.secondsDecrease);
    const decreaseMinutes = useStore((state)=>  state.minutesDecrease);
    const mainColor = useStore((state)=> state.mainColor);
+   const restartTimer = useStore((state)=> state.restartTimer);
+   const mode = useStore((state)=> state.mode);
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       setFlowState('RESTART')
@@ -49,8 +51,9 @@ export default function Clock({ minutes, seconds,barPercentage,setBarPercentage}
                   setFlowState("RESUME");
                   break
                 default:
+                  restartTimer(mode);
                   setFlowState("PAUSE");
-                  setBarPercentage(100)
+                  setBarPercentage(100);
               }
             }}
           >
