@@ -34,6 +34,7 @@ export interface StoreType {
   mode: string;
   font: string;
   mainColor: string;
+  reset:(mode: string) => void;
   secondsDecrease: () => void;
   minutesDecrease: () => void;
   restartTimer:(mode:string)=> void;
