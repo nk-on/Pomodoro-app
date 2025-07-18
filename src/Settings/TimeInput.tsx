@@ -19,6 +19,10 @@ function TimeInput({ title, customvaluesObj }: TimeInputProps) {
               }
             }}
             onChange={(e) => {
+              if(e.target.value === ""){
+                setValue('');
+                return;
+              }
               setValue(Number(e.target.value));
               customvaluesObj.current = customvaluesObj.current.map(
                 (element) => {
