@@ -25,10 +25,10 @@ export const useStore = create<StoreType>((set,get) => ({
         return set(() => ({ mode: clickedMode }))
     },
     customTime(minutesPomodoro, minutesShortBreak, minutesLongBreak) {
-        pomodoroMinutes = minutesPomodoro;
-        shortBreakMinutes = minutesShortBreak;
-        longBreakMinutes = minutesLongBreak;
-        return set(() => ({ timerState: { minutes: minutesPomodoro, seconds: 59 } }))
+        pomodoroMinutes = minutesPomodoro - 1;
+        shortBreakMinutes = minutesShortBreak -1 ;
+        longBreakMinutes = minutesLongBreak -1;
+        return set(() => ({ timerState: { minutes: pomodoroMinutes, seconds: 59 } }))
     },
     setFont(selectedFont: string) {
         return set(() => ({ font: selectedFont }))
