@@ -36,8 +36,8 @@ The Pomodoro Technique is a time management method where you work in focused int
 
 > _Insert your screenshots here_
 
-![Pomodoro Timer Screenshot](./Screenshot.jpeg)
-![Settings Page Screenshot](./Screenshotsettings.jpeg)
+![Pomodoro Timer Screenshot](public/Screenshot.jpeg)
+![Settings Page Screenshot](public/Screenshotsettings.jpeg)
 
 ---
 
