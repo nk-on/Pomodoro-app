@@ -20,7 +20,7 @@ function Timer({ setSettingsVisible }: TimerProps) {
         />
       )}
       <div
-        className="bg-[url(public/Settings.svg)] w-[27px] h-[28px] cursor-pointer"
+        className="bg-[url(./Settings.svg)] w-[27px] h-[28px] cursor-pointer"
         onClick={() => setSettingsVisible((settingsVisible) => !settingsVisible)}
       ></div>
     </>

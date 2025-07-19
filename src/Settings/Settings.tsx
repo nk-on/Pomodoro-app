@@ -40,7 +40,7 @@ function Settings({ setSettingsVisible }: TimerProps) {
       <div className="flex  justify-between px-[15px] py-[20px] cursor-pointer ">
         <h1 className="font-bold text-[28px]">Settings</h1>
         <img
-          src="public/CloseButton.svg"
+          src="./CloseButton.svg"
           alt="close-button"
           onClick={() => setSettingsVisible((settingsVisible) => !settingsVisible)}
         />
